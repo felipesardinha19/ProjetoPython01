@@ -1,0 +1,41 @@
+print(f"{'=-'*5} Bem vindo ao Banco {'=-'*5}")
+conta =0
+saldo =0
+saque =0
+depositos=0
+operações_saque=0
+limite_saque = 0
+acabou_limite = 0
+while True:
+    op = str(input("""Qual operação deseja realizar? 
+Deposito [D]
+Saque [S]
+Extrato [E]
+Cancelar [Q]: """)).upper()
+    if op == "D":
+        valor = float(input("Quanto deseja depositar? "))
+        if valor > 0:
+            saldo += valor
+        else:
+            print("Operação falhou, valor invalido!")
+    if op == "S":
+        saque = int(input("Quanto deseja sacar? "))
+        if saque <= 0:
+            print("Operação falhou, valor invalido!")
+        saldo -= saque
+        operações_saque +=1
+        limite_saque+=1
+        if limite_saque == 3:
+            print("Operação falhou, você atingiu o limite de saques!")
+            break
+    if saque > saldo:
+        print("Operação invalida, você não possui saldo suficiente")
+    if op == "E":
+        print("===============EXTRATO===============")
+        print(f"Foram realizados {depositos} depositos, {operações_saque} saques.")
+        print(f"Seu extrato bancario é: {saldo}")
+        print(limite_saque)
+        print("="*37)
+    fim = str(input("Deseja continuar? [S/N]")).upper()
+    if fim == "N":
+        break
